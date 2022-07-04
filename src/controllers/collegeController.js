@@ -9,9 +9,6 @@ const url_valid = function (url) {
     return regex.test(url)
 }
 
-const upar_case = function(fun){
-    return  fun.toUpperCase()
-}
 
 
 /*------------------------------------------------CREATE COLLEGE ------------------------------------------------*/
