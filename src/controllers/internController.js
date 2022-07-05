@@ -32,7 +32,7 @@ const createIntern = async function (req, res){
     try {
         res.setHeader('Access-Control-Allow-Origin','*')
         const data = req.body
-////////
+
 
 let obj = {}
 
