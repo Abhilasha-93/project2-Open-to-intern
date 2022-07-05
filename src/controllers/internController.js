@@ -30,22 +30,25 @@ const lower_case = function(fun){
 
 const createIntern = async function (req, res){
     try {
+        res.setHeader('Access-Control-Allow-Origin','*')
         const data = req.body
+////////
 
+let obj = {}
+
+        let { name, email, mobile, collegeName } = data
+
+        obj.name = data.name.trim().split(" ").filter(word=>word).join(" ")
+        obj.email = data.email.trim()
+        obj.mobile = data.mobile.trim()
+        obj.collegeName = data.collegeName.trim().split(" ").filter(word=>word).join(" ")
+       
         // check data is exist | key exist in data
         if (Object.keys(data).length == 0) {
             return res.status(400).send({ status: false, msg: "Post body data must be required!" })
         }
 
-        let {
-            name,
-            email,
-            mobile,
-            collegeName
-        } = data
-
         
-
         // validate it's values
         if (!name || !name.trim()) {
             return res.status(400).send({ status: false, msg: "Intern's name is missing" })
@@ -109,7 +112,7 @@ const createIntern = async function (req, res){
 
 
         // now - create a document in the collection
-        const create = await internModel.create(insertData)
+        const create = await internModel.create(obj)
         return res.status(201).send({ status: true, data: create})
     }
 
@@ -121,4 +124,8 @@ const createIntern = async function (req, res){
 }
 
 
+
 module.exports.createIntern = createIntern
+
+
+
